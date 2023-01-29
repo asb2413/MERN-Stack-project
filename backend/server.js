@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 mongoose.set("strictQuery", false);
 const express = require('express')
 const router = require('./routes/workouts')
+const userRouter = require('./routes/user')
 
 //express app
 const app = express()
@@ -21,6 +22,7 @@ app.use((req,res,next)=>{
 
 //routes
 app.use('/api/workouts',router)
+app.use('/api/user',userRouter)
 
 
 //db connnection

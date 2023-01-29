@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from "../components/WorkoutForm";
 import {useWorkoutContext}from '../hooks/useWorkoutContext'
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const Home = () => {
 
     const {workouts, dispatch} = useWorkoutContext()
+    const {user} = useAuthContext()
 
     // fetch data from back end , and we use "proxy":"http://localhost:4000" in packge.json for acceses to the back end file
     
@@ -15,7 +17,14 @@ const Home = () => {
 
         const fetchWorkouts = async ()=>{
 
-            const res = await fetch('/api/workouts')
+            const res = await fetch('/api/workouts',{
+
+                headers:{
+
+                    'Authorization':`Bearer ${user.token}`
+                }
+
+            })
             const json = await res.json()
             
             if(res.ok){
@@ -27,9 +36,15 @@ const Home = () => {
 
         }
 
-        fetchWorkouts()
+        if(user){
 
-    },[dispatch])
+            fetchWorkouts()
+
+        }
+
+        
+
+    },[dispatch,user])
 
     return ( 
 

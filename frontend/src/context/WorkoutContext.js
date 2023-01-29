@@ -22,7 +22,7 @@ export const workoutsReducer= (state, action)=>{
     
 }
 
-export const WorkoutContectProvider = ({children})=>{
+export const WorkoutContextProvider = ({children})=>{
 
     const [state, dispatch] = useReducer(workoutsReducer, {workouts:null})
     
