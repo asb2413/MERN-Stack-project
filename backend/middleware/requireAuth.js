@@ -13,7 +13,7 @@ const requireAuth = async(req,res,next)=>{
 
     }
 
-    //the authorization header looks like this 'brears qlweqrjqorrwqurqwporwqrqwrwq' =>
+    //the authorization header looks like this 'bearer qlweqrjqorrwqurqwporwqrqwrwq' =>
     //the second part is the token we need so we have to use split method to take the second string =>
     //we split the string where the space at and we got array with 2 strings
     const token = authorization.split(' ')[1]
